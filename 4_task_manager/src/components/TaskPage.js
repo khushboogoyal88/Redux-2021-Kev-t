@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import TaskList from './TaskList'
 
+
 const TASKS_STATUSES = ['Unstarted', 'In progress', 'Completed']
 
 const TaskPage = (props) => {
@@ -20,6 +21,11 @@ const TaskPage = (props) => {
         showCardForm(!cardForm)
     };
     
+    const resetForm = () => {
+        setTitle('');
+        setDescription('');
+        showCardForm(false);
+    }
     
     const onCreateTask = (e) =>{
         e.preventDefault();
@@ -27,6 +33,7 @@ const TaskPage = (props) => {
             title,
             description
         })
+        resetForm();
     }
     
     const renderTaskLists = () =>{
@@ -35,7 +42,7 @@ const TaskPage = (props) => {
             const statusTasks = tasks.filter(task=>task.status === status);
             return(
                 <div className="col-md-3 card m-2 p-0" key={id}>
-                <TaskList key={status} status={status} tasks={statusTasks} onStatusChange={props.onStatusChange}/>
+                <TaskList key={status} status={status} tasks={statusTasks} onStatusChange={props.onStatusChange} onDeleteTask={props.onDeleteTask}/>
                 </div>
                 )
             })

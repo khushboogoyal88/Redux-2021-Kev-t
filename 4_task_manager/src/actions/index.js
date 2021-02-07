@@ -1,5 +1,6 @@
 import { EDIT_TASK } from "./types";
 import { CREATE_TASK } from "./types";
+import { DELETE_TASK } from "./types";
 
 export const editTask = (id, params= {})=>{
     return{
@@ -21,5 +22,12 @@ export const createTask = ({title, description})=>{
             description,
             status:"Unstarted"
         }
+    }
+}
+
+export const deleteTask = (id) => {
+    return {
+        type: DELETE_TASK,
+        id,
     }
 }
